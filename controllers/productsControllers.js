@@ -3,11 +3,10 @@ const productsService = require('../services/productsServices');
 const getAllProducts = async (_req, res) => {
   try {
     const results = await productsService.getAllProducts();
-    if (!results) {
+    if (!results || results.length < 1) {
       return res.status(404).json({ message: 'Products not found' });
     }
-    console.log('controller');
-    res.status(200).json(results);
+    return res.status(200).json(results);
   } catch (err) {
     return res.status(500).json({ message: 'Erro ao tentar realizar a operação' });
   }

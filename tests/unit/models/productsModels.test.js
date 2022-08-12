@@ -5,7 +5,7 @@ const connection = require('../../../helpers/connection');
 const productsModel = require('../../../models/productsModels');
 
 describe('Verificando a camada models', () => {
-  beforeEach(sinon.restore);
+  afterEach(sinon.restore);
 
   describe('Verificando os produtos pelo getAllProducts', () => {
     const fakeProduct = [{
@@ -32,7 +32,7 @@ describe('Verificando a camada models', () => {
       it('Ao consultar o products pelo id', async () => { 
       sinon.stub(connection, 'execute').resolves([{id: 3, name: 'Test Product 3'}]);
 
-      const productsById = await productsModel.getProductsById('3');
+      const productsById = await productsModel.getProductById('3');
       expect(productsById).to.have.all.keys('id', 'name');
       expect(productsById.id).to.be.equal(3);
       expect(productsById.name).to.be.equal('Test Product 3');
