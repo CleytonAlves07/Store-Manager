@@ -44,4 +44,14 @@ describe('Testando a camada Service', () => {
       expect(productById).to.be.a('boolean');
     });
   });
+  describe('Ao tentar adicionar um produto', () => {
+    fakeProduct = {}
+
+    it('Quando um produto é adicionado com sucesso', async () => { 
+      sinon.stub(productsModels, 'addProduct').resolves(fakeProduct);
+
+      const result = await productsService.addProduct('Rojão de Andromeda');
+      expect(result).to.be.an('object');
+    })
+  });
 });

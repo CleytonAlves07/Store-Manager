@@ -16,7 +16,7 @@ const getProductById = async (id) => {
 
 const addProduct = async (name) => {
   const [row] = await connection.execute('INSERT INTO StoreManager.products (name) VALUES (?)',
-      [name]);
+    [name]);
   const result = {
     id: row.insertId,
     name,

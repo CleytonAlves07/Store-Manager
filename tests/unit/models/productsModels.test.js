@@ -29,15 +29,25 @@ describe('Verificando a camada models', () => {
     });
 
     describe('Ao consultar o produto pelo id', () => {
-      it('Ao consultar o products pelo id', async () => { 
-      sinon.stub(connection, 'execute').resolves([{id: 3, name: 'Test Product 3'}]);
+      it('Ao consultar o products pelo id', async () => {
+        sinon.stub(connection, 'execute').resolves([{ id: 3, name: 'Test Product 3' }]);
 
-      const productsById = await productsModel.getProductById('3');
-      expect(productsById).to.have.all.keys('id', 'name');
-      expect(productsById.id).to.be.equal(3);
-      expect(productsById.name).to.be.equal('Test Product 3');
+        const productsById = await productsModel.getProductById('3');
+        expect(productsById).to.have.all.keys('id', 'name');
+        expect(productsById.id).to.be.equal(3);
+        expect(productsById.name).to.be.equal('Test Product 3');
 
-    })
-    })
+      });
+    });
+  });
+  describe('Ao adicionar um produto', () => {
+    const fakeProduct = {}
+
+    it('Quando o produto é registrado', async () => {
+      sinon.stub(connection, 'execute').resolves([fakeProduct]);
+
+      const result = await productsModel.addProduct(fakeProduct);
+      expect(result).to.be.an('object');
+    });
   });
 });

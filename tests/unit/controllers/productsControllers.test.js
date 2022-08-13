@@ -80,6 +80,29 @@ describe('Testando a camada Controllers ', () => {
      
     });
   });
+  describe('Quando um response é retornado', () => {
+    const res = {};
+    const req = { body: {} };
+
+    it('Quando é retornado informações válidas', async () => {
+      res.json = sinon.stub().returns();
+      res.status = sinon.stub().returns(res);
+      sinon.stub(productsService, 'addProduct').resolves(true);
+
+      const result = await productsController.addProduct(req, res);
+      expect(res.status.calledWith(201)).to.be.equal(true);
+    });
+
+    it('Quando os dados não são retornados', async () => {
+      res.json = sinon.stub().returns();
+      res.status = sinon.stub().returns(res);
+      sinon.stub(productsService, 'addProduct').rejects(false);
+
+      await productsController.addProduct(req, res);
+      expect(res.status.calledWith(500)).to.equal(true);
+     
+    });
+  });
 });
 
 

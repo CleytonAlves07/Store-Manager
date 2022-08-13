@@ -29,7 +29,7 @@ const addProduct = async (req, res) => {
   try {
     const { name } = req.body;
     const result = await productsService.addProduct(name);
-
+    
     res.status(201).json(result);
   } catch (err) { 
     res.status(500).json('Erro ao tentar realizar a operação');
