@@ -4,7 +4,7 @@ const { expect } = require('chai');
 const productsService = require('../../../services/productsServices');
 const productsController = require('../../../controllers/productsControllers');
 
-describe('Testando a camada Controllers ', () => {
+describe('Testando a camada Controllers do product ', () => {
   afterEach(sinon.restore);
 
   describe('Chamando o getAllProducts', () => {
@@ -93,7 +93,7 @@ describe('Testando a camada Controllers ', () => {
       expect(res.status.calledWith(201)).to.be.equal(true);
     });
 
-    it('Quando os dados não são retornados', async () => {
+    it('Quando os dados não são retornados pela função addProduct', async () => {
       res.json = sinon.stub().returns();
       res.status = sinon.stub().returns(res);
       sinon.stub(productsService, 'addProduct').rejects(false);

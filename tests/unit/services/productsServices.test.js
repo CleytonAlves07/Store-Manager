@@ -5,7 +5,7 @@ const productsModels = require('../../../models/productsModels');
 const productsService = require('../../../services/productsServices');
 
 describe('Testando a camada Service', () => {
-  beforeEach(sinon.restore);
+  afterEach(sinon.restore);
 
   describe('Ao chamar  todos os produtos', () => { 
     const fakeProduct = [{

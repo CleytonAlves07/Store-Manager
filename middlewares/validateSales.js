@@ -1,5 +1,3 @@
-const productModel = require('../models/productsModels');
-
 const validateQuantity = (req, res, next) => {
   const sales = req.body;
   for (let i = 0; i < sales.length; i += 1) { 
@@ -26,13 +24,8 @@ const validateProducts = (req, res, next) => {
   next();
 };
 
-const productIdIsValid = async (arrayProducts) => {
-  const result = await
-    Promise.all(arrayProducts.map((product) => productModel.getProductById(product.productId)));
-    const valid = result.some((product) => product.length === 0);
-    console.log('result do validateSales', result);
-  console.log('valid validateSales', !valid);
-  
+const productIdIsValid = async (data) => {
+    const valid = data.some((product) => product.length === 0);
   return !valid;
 };
 
